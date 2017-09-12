@@ -1,0 +1,22 @@
+{
+  "name": "react-express-passport-facebook",
+  "version": "1.0.0",
+  "description": "Express 4.x app using Passport for authentication for Facebook with ReactJS for the fron end",
+  "main": "server.js",
+  "author": "Victor Li",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "morgan": "^1.8.2",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1"
+  },
+  "devDependencies": {
+    "dotenv": "^4.0.0"
+  }
+}
