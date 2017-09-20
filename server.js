@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
+const path = require('path');
 require('dotenv').config();
 
 // Configure the Facebook strategy for use by Passport.
@@ -15,7 +16,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-      callbackURL: 'http://localhost:3000/login/facebook/return',
+      callbackURL: 'http://localhost:5000/login/facebook/return',
       profileFields: ['displayName', 'email']
     },
     (accessToken, refreshToken, profile, cb) =>
@@ -25,7 +26,6 @@ passport.use(
       // allows for account linking and authentication with other identity
       // providers.
       cb(null, profile)
-
   )
 );
 
@@ -69,19 +69,25 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, '/client/build')));
+
 // Initialize Passport and restore authentication state, if any, from the
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Define routes.
-app.get('/', (req, res) => {
-  res.render('home', { user: req.user });
-});
-
-app.get('/login', (req, res) => {
-  res.render('login');
-});
+// app.get('/', (req, res) => {
+//   res.render('home', { user: req.user });
+// });
+//
+// app.get('/login', (req, res) => {
+//   res.render('login');
+// });
+//
+// app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
+//   res.render('profile', { user: req.user });
+// });
 
 app.get('/login/facebook', passport.authenticate('facebook'));
 
@@ -98,8 +104,22 @@ app.get('/auth/logout', (req, res) => {
   res.redirect('/');
 });
 
-app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
-  res.render('profile', { user: req.user });
+app.get('/auth/current_user', (req, res) => {
+  if (req.user) {
+    console.log(req.user);
+    return res.send({
+      id: req.user.id,
+      username: req.user.username,
+      displayName: req.user.displayName,
+      emails: req.user.emails
+    });
+  }
+  return res.send({});
 });
 
-app.listen(3000);
+// client side rendering with react
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build/index.html'));
+});
+
+app.listen(5000);
