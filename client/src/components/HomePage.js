@@ -17,7 +17,11 @@ class HomePage extends React.Component {
         </p>
       );
     }
-    return <p>Hello {user.displayName}. View your profile</p>;
+    return (
+      <p>
+        Hello {user.displayName}. View your <Link to="/profile">profile</Link>
+      </p>
+    );
   }
   render() {
     return <div>{this.renderContent()}</div>;
