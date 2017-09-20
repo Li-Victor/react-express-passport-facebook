@@ -106,7 +106,6 @@ app.get('/auth/logout', (req, res) => {
 
 app.get('/auth/current_user', (req, res) => {
   if (req.user) {
-    console.log(req.user);
     return res.send({
       id: req.user.id,
       username: req.user.username,
