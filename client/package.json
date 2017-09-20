@@ -23,7 +23,7 @@
     "/login/facebook/*": {
       "target": "http://localhost:5000"
     },
-    "/auth/current_user": {
+    "/auth/*": {
       "target": "http://localhost:5000"
     }
   }

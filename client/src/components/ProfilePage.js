@@ -6,13 +6,16 @@ class ProfilePage extends React.Component {
   render() {
     const { user } = this.props;
     return (
-      <p>
-        ID: {user.id}
-        <br />
-        Name: {user.displayName}
-        <br />
-        {user.emails && <span>Email: {user.emails[0].value}</span>}
-      </p>
+      <div>
+        <p>
+          ID: {user.id}
+          <br />
+          Name: {user.displayName}
+          <br />
+          {user.emails && <span>Email: {user.emails[0].value}</span>}
+        </p>
+        <a href="/auth/logout">Logout</a>
+      </div>
     );
   }
 }
