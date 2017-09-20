@@ -1,16 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import isEmptyObject from '../utils/emptyObject';
 
 class HomePage extends React.Component {
-  render() {
-    return (
-      <div>
+  renderContent() {
+    const { user } = this.props;
+    if (user === null) {
+      return <div>Something has gone terribly wrong</div>;
+    } else if (isEmptyObject(user)) {
+      return (
         <p>
           Welcome! Please <Link to="/login">log in</Link>
         </p>
-      </div>
-    );
+      );
+    }
+    return <p>Hello {user.displayName}. View your profile</p>;
+  }
+  render() {
+    return <div>{this.renderContent()}</div>;
   }
 }
 
-export default HomePage;
+HomePage.propTypes = {
+  // eslint-disable-next-line
+  user: PropTypes.object.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    user: state
+  };
+}
+
+export default connect(mapStateToProps)(HomePage);

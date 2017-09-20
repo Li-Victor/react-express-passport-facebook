@@ -22,6 +22,9 @@
   "proxy": {
     "/login/facebook/*": {
       "target": "http://localhost:5000"
+    },
+    "/auth/current_user": {
+      "target": "http://localhost:5000"
     }
   }
 }
