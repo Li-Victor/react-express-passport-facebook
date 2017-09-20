@@ -76,19 +76,6 @@ app.use(express.static(path.join(__dirname, '/client/build')));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Define routes.
-// app.get('/', (req, res) => {
-//   res.render('home', { user: req.user });
-// });
-//
-// app.get('/login', (req, res) => {
-//   res.render('login');
-// });
-//
-// app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
-//   res.render('profile', { user: req.user });
-// });
-
 app.get('/login/facebook', passport.authenticate('facebook'));
 
 app.get(
