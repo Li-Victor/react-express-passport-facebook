@@ -5,7 +5,7 @@
       "jsx-a11y",
       "import"
   ],
-    "parserOptions": {
+  "parserOptions": {
     "ecmaVersion": 2016,
     "sourceType": "module",
     "ecmaFeatures": {
@@ -16,7 +16,7 @@
     "es6": true,
     "browser": true,
     "node": true
-},
+  },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prefer-arrow-callback": ["error", { "allowUnboundThis": true }],
