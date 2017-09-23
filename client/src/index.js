@@ -9,6 +9,15 @@ import App from './App';
 import authReducer from './reducers/authReducer';
 
 const store = createStore(authReducer, {}, applyMiddleware(reduxThunk));
+
+if (window.location.hash === '#_=_') {
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href.split('#')[0]);
+  } else {
+    window.location.hash = '';
+  }
+}
+
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
