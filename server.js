@@ -82,7 +82,11 @@ app.get(
   '/login/facebook/return',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   (req, res) => {
+    // run in production
     res.redirect('/');
+
+    // run in development
+    // res.redirect('http://localhost:3000');
   }
 );
 
