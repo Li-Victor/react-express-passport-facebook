@@ -49,10 +49,6 @@ passport.deserializeUser((obj, cb) => {
 // Create a new Express application.
 const app = express();
 
-// Configure view engine to render EJS templates.
-app.set('views', `${__dirname}/views`);
-app.set('view engine', 'ejs');
-
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
 // app.use(require('morgan')('combined'));
@@ -112,4 +108,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
-app.listen(5000);
+app.listen(5000, () => {
+  console.log('Listening on port 5000');
+});
